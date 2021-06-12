@@ -92,7 +92,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedContains_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedContains)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedContains)
     }
 
     /// Returns `true` if every point of the `other` geometry is inside self's interior.
@@ -116,7 +116,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedContainsProperly_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedContainsProperly)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedContainsProperly)
     }
 
     /// Returns `true` if no point of `self` is outside of `other`.
@@ -145,7 +145,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedCoveredBy_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedCoveredBy)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedCoveredBy)
     }
 
     /// Returns `true` if no point of `other` is outside of `self`.
@@ -173,7 +173,7 @@ impl<'a> PreparedGeometry<'a> {
     pub fn covers<'b, G: Geom<'b>>(&self, other: &G) -> GResult<bool> {
         let ret_val =
             unsafe { GEOSPreparedCovers_r(self.get_raw_context(), self.as_raw(), other.as_raw()) };
-        check_geos_predicate(ret_val, PredicateType::PreparedCovers)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedCovers)
     }
 
     /// Returns `true` if `self` and `other` have at least one interior into each other.
@@ -194,7 +194,7 @@ impl<'a> PreparedGeometry<'a> {
     pub fn crosses<'b, G: Geom<'b>>(&self, other: &G) -> GResult<bool> {
         let ret_val =
             unsafe { GEOSPreparedCrosses_r(self.get_raw_context(), self.as_raw(), other.as_raw()) };
-        check_geos_predicate(ret_val, PredicateType::PreparedCrosses)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedCrosses)
     }
 
     /// Returns `true` if `self` doesn't:
@@ -225,7 +225,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedDisjoint_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedDisjoint)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedDisjoint)
     }
 
     /// Returns `true` if `self` shares any portion of space with `other`. So if any of this is
@@ -259,7 +259,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedIntersects_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedIntersects)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedIntersects)
     }
 
     /// Returns `true` if `self` spatially overlaps `other`.
@@ -291,7 +291,7 @@ impl<'a> PreparedGeometry<'a> {
         let ret_val = unsafe {
             GEOSPreparedOverlaps_r(self.get_raw_context(), self.as_raw(), other.as_raw())
         };
-        check_geos_predicate(ret_val, PredicateType::PreparedOverlaps)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedOverlaps)
     }
 
     /// Returns `true` if the only points in common between `self` and `other` lie in the union of
@@ -318,7 +318,7 @@ impl<'a> PreparedGeometry<'a> {
     pub fn touches<'b, G: Geom<'b>>(&self, other: &G) -> GResult<bool> {
         let ret_val =
             unsafe { GEOSPreparedTouches_r(self.get_raw_context(), self.as_raw(), other.as_raw()) };
-        check_geos_predicate(ret_val, PredicateType::PreparedTouches)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedTouches)
     }
 
     /// Returns `true` if `self` is completely inside `other`.
@@ -347,7 +347,7 @@ impl<'a> PreparedGeometry<'a> {
     pub fn within<'b, G: Geom<'b>>(&self, other: &G) -> GResult<bool> {
         let ret_val =
             unsafe { GEOSPreparedWithin_r(self.get_raw_context(), self.as_raw(), other.as_raw()) };
-        check_geos_predicate(ret_val, PredicateType::PreparedWithin)
+        check_geos_predicate(ret_val as _, PredicateType::PreparedWithin)
     }
 }
 
